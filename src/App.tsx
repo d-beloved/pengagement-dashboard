@@ -1,6 +1,7 @@
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import CaptureToolsMenu from "./components/CaptureToolsMenu";
+import PostEngagementTable from "./components/PostEngagementTable";
 
 function App() {
 	return (
@@ -9,6 +10,7 @@ function App() {
 			<div className="flex gap-8 w-full h-full">
 				<Sidebar />
 				<CaptureToolsMenu />
+				<PostEngagementTable />
 			</div>
 		</div>
 	);
