@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import dashboardIcon from "../assets/dashboard.svg";
 import usersIcon from "../assets/users.svg";
 import messageIcon from "../assets/messenger.svg";
@@ -23,7 +23,7 @@ const sidebarItems = [
 
 const Sidebar: FunctionComponent = () => {
 	return (
-		<div className="px-4 pt-8 w-[4.5%] h-full bg-white">
+		<div className="px-4 pt-8 w-[4.5%] h-full bg-white outline outline-1 outline-slate-200">
 			<ul className="flex flex-col gap-8">
 				{sidebarItems.map((item) => (
 					<li className="w-5 h-5 cursor-pointer self-center">
