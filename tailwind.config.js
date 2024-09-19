@@ -7,7 +7,7 @@ export default {
 		extend: {
 			colors: {
 				theme: "#f2f7ff",
-				themeDark: "#10599b",
+				themebg: "#0169FF",
 				themeDarkBlur: "#10599b22",
 			},
 		},
