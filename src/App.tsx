@@ -1,7 +1,8 @@
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
-import CaptureToolsMenu from "./components/CaptureToolsMenu";
-import PostEngagementTable from "./components/PostEngagementTable";
+import EditPage from "./components/EditPostEngagement/EditPage";
+// import CaptureToolsMenu from "./components/CaptureToolsMenu";
+// import PostEngagementTable from "./components/PostEngagementTable";
 
 function App() {
 	return (
@@ -9,8 +10,9 @@ function App() {
 			<Topbar />
 			<div className="flex gap-8 w-full h-full">
 				<Sidebar />
-				<CaptureToolsMenu />
-				<PostEngagementTable />
+				{/* <CaptureToolsMenu />
+				<PostEngagementTable /> */}
+				<EditPage />
 			</div>
 		</div>
 	);
