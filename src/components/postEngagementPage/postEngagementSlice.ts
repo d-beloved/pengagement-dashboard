@@ -7,7 +7,9 @@ import { postEngagementData } from "../../lib/Data";
 import { PostEngagementState } from "../../lib/interfaces";
 
 const initialState: PostEngagementState = {
-	postEngagementData: postEngagementData,
+	totalPostEngagement: postEngagementData.length,
+	allPostEngagementData: postEngagementData,
+	postEngagementData: [...postEngagementData.slice(0, 10)],
 };
 
 export const postEngagementSlice = createSlice({
@@ -33,13 +35,30 @@ export const postEngagementSlice = createSlice({
 				return post;
 			});
 		},
+		searchPostEngagement: (state, action: PayloadAction<string>) => {
+			state.postEngagementData = postEngagementData.filter((post) => {
+				return post.name
+					.toLowerCase()
+					.includes(action.payload.toLowerCase());
+			});
+		},
+		changePage: (state, action: PayloadAction<number>) => {
+			state.postEngagementData = state.allPostEngagementData.slice(
+				(action.payload - 1) * 10,
+				action.payload * 10,
+			);
+		},
 	},
 });
 
-export const { deletePostEngagement, renamePostEngagement } =
-	postEngagementSlice.actions;
+export const {
+	deletePostEngagement,
+	renamePostEngagement,
+	searchPostEngagement,
+	changePage,
+} = postEngagementSlice.actions;
 
 export default postEngagementSlice.reducer;
 
 export const selectPostEngagements = (state: RootState) =>
-	state.postEngagements.postEngagementData;
+	state.postEngagements;

@@ -4,22 +4,36 @@ import searchIcon from "../../assets/lens.svg";
 import arrowDown from "../../assets/arrow-down.svg";
 import TablePagination from "./TablePagination";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
-import { selectPostEngagements } from "./postEngagementSlice";
+import {
+	changePage,
+	searchPostEngagement,
+	selectPostEngagements,
+} from "./postEngagementSlice";
+import { getCurrentPageIndex } from "../../lib/helpers";
 
 const PostEngagementTable: FunctionComponent = () => {
 	const dispatch = useAppDispatch();
-	const postEngagementsData = useAppSelector(selectPostEngagements);
+	const postEngagements = useAppSelector(selectPostEngagements);
+	const { postEngagementData, totalPostEngagement, allPostEngagementData } =
+		postEngagements;
 
 	return (
 		<div className="rounded-box mt-5 w-9/12 mx-6">
 			<div className="flex justify-between items-center">
 				<p className="text-xl text-slate-700">Post Engagement</p>
 				<div className="flex gap-4 mr-4 mb-5">
-					<label className="input input-sm outline outline-1 outline-black active:outline active:outline-black active:outline-1 bg-white flex items-center gap-2">
+					<label className="input input-sm outline outline-1 outline-black bg-white flex items-center gap-2">
 						<input
 							type="text"
 							className="grow text-black font-light"
 							placeholder="Search"
+							onChange={(e) =>
+								setTimeout(() => {
+									dispatch(
+										searchPostEngagement(e.target.value),
+									);
+								}, 1000)
+							}
 						/>
 						<img
 							className="w-3 h-3"
@@ -31,7 +45,7 @@ const PostEngagementTable: FunctionComponent = () => {
 						<div
 							tabIndex={0}
 							role="button"
-							className="btn btn-outline btn-sm bg-white text-slate-700 flex"
+							className="btn btn-outline btn-sm bg-white text-slate-700 flex hover:invert"
 						>
 							Bulk Actions
 							<img
@@ -51,17 +65,17 @@ const PostEngagementTable: FunctionComponent = () => {
 					</div>
 				</div>
 			</div>
-			<div className="overflow-x-auto max-h-[34rem] bg-white">
-				<table className="table table-sm">
+			<div className="overflow-x-auto max-h-[28rem] bg-white">
+				<table className="table table-xs">
 					<thead>
 						<tr className="text-slate-400 font-bold border-b-inherit">
 							<th>
-								<label>
+								<div className="px-1">
 									<input
 										type="checkbox"
-										className="checkbox checkbox-sm outline outline-slate-200 outline-1"
+										className="checkbox checkbox-sm outline outline-slate-200 outline-1 checked:invert"
 									/>
-								</label>
+								</div>
 							</th>
 							<th></th>
 							<th>Name</th>
@@ -72,18 +86,18 @@ const PostEngagementTable: FunctionComponent = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{postEngagementsData.map((item) => (
+						{postEngagementData.map((item) => (
 							<tr
 								key={item.id}
 								className="text-slate-600 border-b-inherit"
 							>
 								<th>
-									<label>
+									<div className="px-1">
 										<input
 											type="checkbox"
-											className="checkbox checkbox-sm outline outline-slate-200 outline-1"
+											className="checkbox checkbox-sm outline outline-slate-200 outline-1 checked:invert"
 										/>
-									</label>
+									</div>
 								</th>
 								<td className="max-w-1">
 									<div className="mask mask-squircle h-4 w-4">
@@ -94,8 +108,8 @@ const PostEngagementTable: FunctionComponent = () => {
 									</div>
 								</td>
 								<td>
-									<div className="flex items-center gap-3">
-										<div className="font-semibold">
+									<div className="flex items-center">
+										<div className="font-normal text-sm">
 											{item.name}
 										</div>
 									</div>
@@ -137,7 +151,17 @@ const PostEngagementTable: FunctionComponent = () => {
 					</tbody>
 				</table>
 			</div>
-			<TablePagination />
+			<TablePagination
+				numberOfPages={Math.ceil(totalPostEngagement / 10)}
+				currentPage={getCurrentPageIndex(
+					10,
+					postEngagementData,
+					allPostEngagementData,
+				)}
+				handlePageChange={(page) => {
+					dispatch(changePage(page));
+				}}
+			/>
 		</div>
 	);
 };

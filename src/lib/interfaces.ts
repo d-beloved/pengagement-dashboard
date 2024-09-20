@@ -8,5 +8,7 @@ export interface PostEngagementDataProps {
 }
 
 export interface PostEngagementState {
+	totalPostEngagement: number;
+	allPostEngagementData: PostEngagementDataProps[];
 	postEngagementData: PostEngagementDataProps[];
 }
