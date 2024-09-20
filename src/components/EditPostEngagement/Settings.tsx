@@ -1,5 +1,4 @@
 import { FunctionComponent } from "react";
-import JoinedInput from "./JoinedInput";
 import angry from "../../assets/angry.svg";
 import care from "../../assets/care.svg";
 import haha from "../../assets/haha.svg";
@@ -7,8 +6,9 @@ import like from "../../assets/like.svg";
 import love from "../../assets/love.svg";
 import sad from "../../assets/sad.svg";
 import wow from "../../assets/wow.svg";
-import DropdownSection from "../DropdownSection";
-import Reactions from "./Reactions";
+import DropdownSection from "../common/DropdownSection";
+import JoinedInput from "../common/JoinedInput";
+import Reactions from "../common/Reactions";
 
 const messageType = [
 	{

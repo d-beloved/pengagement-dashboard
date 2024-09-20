@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import Badges from "./Badges";
+import Badges from "../common/Badges";
 
 interface ReactionProps {
 	reactions: string[];

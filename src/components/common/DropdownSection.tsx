@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import Dropdown from "./Dropdown";
-import cross from "../assets/cross.svg";
+import cross from "../../assets/cross.svg";
 
 interface OptionProps {
 	label: string;

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import JoinedInput from "./JoinedInput";
+import JoinedInput from "../common/JoinedInput";
 
 const GrabPost: FunctionComponent = () => {
 	return (

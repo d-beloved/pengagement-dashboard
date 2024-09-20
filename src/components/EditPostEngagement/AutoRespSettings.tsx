@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import DropdownSection from "../DropdownSection";
+import DropdownSection from "../common/DropdownSection";
 
 const commentType = [
 	{

@@ -1,7 +1,9 @@
 import { FunctionComponent } from "react";
-import Tabs from "./Tabs";
+import Tabs from "../common/Tabs";
 import GrabPost from "./GrabPost";
 import SelectPost from "./SelectPost";
+import Settings from "./Settings";
+import AutoRespSettings from "./AutoRespSettings";
 
 const EditPage: FunctionComponent = () => {
 	return (
@@ -27,8 +29,11 @@ const EditPage: FunctionComponent = () => {
 					type="tabs-bordered"
 					width="w-2/5"
 					contents={[
-						{ title: "Settings", settings: <SelectPost /> },
-						{ title: "Auto Response", settings: <GrabPost /> },
+						{ title: "Settings", settings: <Settings /> },
+						{
+							title: "Auto Response",
+							settings: <AutoRespSettings />,
+						},
 					]}
 					fontSize="text-sm"
 				/>
