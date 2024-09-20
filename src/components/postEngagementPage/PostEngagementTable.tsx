@@ -1,12 +1,13 @@
 import { FunctionComponent } from "react";
-import searchIcon from "../assets/lens.svg";
-import igIcon from "../assets/instagram-1.svg";
-import fbIcon from "../assets/fb-messenger.svg";
-import arrowDown from "../assets/arrow-down.svg";
-import leftDoubleArrow from "../assets/double-arrow-left.svg";
-import leftArrow from "../assets/left-arrow-backup.svg";
-import rightArrow from "../assets/right-arrow.svg";
-import rightDoubleArrow from "../assets/double-arrow-right.svg";
+import { Link } from "react-router-dom";
+import searchIcon from "../../assets/lens.svg";
+import igIcon from "../../assets/instagram-1.svg";
+import fbIcon from "../../assets/fb-messenger.svg";
+import arrowDown from "../../assets/arrow-down.svg";
+import leftDoubleArrow from "../../assets/double-arrow-left.svg";
+import leftArrow from "../../assets/left-arrow-backup.svg";
+import rightArrow from "../../assets/right-arrow.svg";
+import rightDoubleArrow from "../../assets/double-arrow-right.svg";
 
 const postEngagementData = [
 	{
@@ -167,7 +168,11 @@ const PostEngagementTable: FunctionComponent = () => {
 											className="dropdown-content menu bg-white font-light rounded-box z-[1] w-max h-max p-1 shadow"
 										>
 											<li>
-												<a>Edit</a>
+												<Link
+													to={`/capture-tools/post-engagements/${item.id}/edit`}
+												>
+													Edit
+												</Link>
 											</li>
 											<li>
 												<a>Rename</a>

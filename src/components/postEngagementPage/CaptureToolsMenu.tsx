@@ -1,17 +1,23 @@
 import { FunctionComponent } from "react";
-import link from "../assets/link.svg";
-import jsonIcon from "../assets/format-json.svg";
-import connectorIcon from "../assets/plugin-connect.svg";
-import menuIcon from "../assets/menu-grid.svg";
-import postIcon from "../assets/post-sign.svg";
-import messengerIcon from "../assets/messenger.svg";
+import { Link } from "react-router-dom";
+import link from "../../assets/link.svg";
+import jsonIcon from "../../assets/format-json.svg";
+import connectorIcon from "../../assets/plugin-connect.svg";
+import menuIcon from "../../assets/menu-grid.svg";
+import postIcon from "../../assets/post-sign.svg";
+import messengerIcon from "../../assets/messenger.svg";
 
 const CaptureToolsMenuItems = [
 	{ icon: link, text: "Link Library", alt: "Link" },
 	{ icon: jsonIcon, text: "JSON Generator", alt: "json-generator" },
 	{ icon: connectorIcon, text: "Checkbox Plugin", alt: "connect" },
 	{ icon: menuIcon, text: "Menu Plugin", alt: "messenger" },
-	{ icon: postIcon, text: "Post Engagement", alt: "posts" },
+	{
+		icon: postIcon,
+		text: "Post Engagement",
+		alt: "posts",
+		route: "/capture-tools/post-engagements",
+	},
 	{ icon: messengerIcon, text: "Send To Messenger", alt: "send" },
 ];
 
@@ -24,14 +30,24 @@ const CaptureToolsMenu: FunctionComponent = () => {
 					key={item.text}
 					className="flex text-primary-content font-light"
 				>
-					<a>
-						<img
-							className="w-4 h-4"
-							src={item.icon}
-							alt={item.alt}
-						/>
-						{item.text}
-					</a>
+					{item.route ? (
+						<Link to={item.route}>
+							<img
+								className="w-4 h-4"
+								src={item.icon}
+								alt={item.alt}
+							/>
+						</Link>
+					) : (
+						<a>
+							<img
+								className="w-4 h-4"
+								src={item.icon}
+								alt={item.alt}
+							/>
+							{item.text}
+						</a>
+					)}
 				</li>
 			))}
 		</ul>

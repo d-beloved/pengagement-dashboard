@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import shield from "../assets/shield-exclamation.svg";
 import darkThemeIcon from "../assets/moon.svg";
-// import lightThemeIcon from "../assets/light.svg";
 import circle from "../assets/circle-pie-chart.svg";
 
 const topMenuItems = [
@@ -15,7 +15,12 @@ const Topbar: FunctionComponent = () => {
 		<nav className="navbar bg-white outline outline-1 outline-slate-200">
 			<div className="navbar-start gap-4">
 				<div className="text-xl font-extralight text-green-600">
-					Pe-Dash
+					<Link
+						className="hover:no-underline"
+						to="/capture-tools/post-engagements"
+					>
+						Pe-Dash
+					</Link>
 				</div>
 				<h3 className="border border-solid px-3 py-1 rounded text-base-100 hover:underline">
 					@d-beloved
