@@ -1,14 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import shield from "../assets/shield-exclamation.svg";
-import darkThemeIcon from "../assets/moon.svg";
-import circle from "../assets/circle-pie-chart.svg";
-
-const topMenuItems = [
-	{ icon: shield, text: "Notifications" },
-	{ icon: darkThemeIcon, text: "Page Theme" },
-	{ icon: circle, text: "Info" },
-];
+import { topMenuItems } from "../lib/Data";
 
 const Topbar: FunctionComponent = () => {
 	return (
@@ -26,13 +18,20 @@ const Topbar: FunctionComponent = () => {
 					@d-beloved
 				</h3>
 			</div>
-			<div className="navbar-end gap-7">
+			<div className="navbar-end gap-2">
 				{topMenuItems.map((item) => (
-					<div className="w-6 h-6">
-						<img src={item.icon} alt={item.text} />
+					<div
+						key={item.text}
+						className={`flex items-center justify-center w-12 h-12 hover:bg-slate-300 ${item.text === "Notifications" && "hover:!bg-red-300"}  hover:rounded-full`}
+					>
+						<img
+							className="w-2/4 h-2/4"
+							src={item.icon}
+							alt={item.text}
+						/>
 					</div>
 				))}
-				<div className="flex text-center bg-red-500 p-2 rounded-full">
+				<div className="flex text-center bg-themebg p-2 rounded-full hover:outline hover:outline-slate-500 hover:outline-3 cursor-pointer">
 					<p className="font-bold text-white text-md w-6 h-6">A</p>
 				</div>
 			</div>

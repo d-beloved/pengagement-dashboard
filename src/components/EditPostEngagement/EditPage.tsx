@@ -4,6 +4,7 @@ import GrabPost from "./GrabPost";
 import SelectPost from "./SelectPost";
 import Settings from "./Settings";
 import AutoRespSettings from "./AutoRespSettings";
+import { Link } from "react-router-dom";
 
 const EditPage: FunctionComponent = () => {
 	return (
@@ -15,7 +16,9 @@ const EditPage: FunctionComponent = () => {
 							<a>Capture Tools</a>
 						</li>
 						<li>
-							<a>Post Engagement</a>
+							<Link to="/capture-tools/post-engagements">
+								Post Engagement
+							</Link>
 						</li>
 						<li>Edit</li>
 					</ul>

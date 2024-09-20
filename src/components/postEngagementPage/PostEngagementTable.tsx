@@ -4,10 +4,7 @@ import searchIcon from "../../assets/lens.svg";
 import igIcon from "../../assets/instagram-1.svg";
 import fbIcon from "../../assets/fb-messenger.svg";
 import arrowDown from "../../assets/arrow-down.svg";
-import leftDoubleArrow from "../../assets/double-arrow-left.svg";
-import leftArrow from "../../assets/left-arrow-backup.svg";
-import rightArrow from "../../assets/right-arrow.svg";
-import rightDoubleArrow from "../../assets/double-arrow-right.svg";
+import TablePagination from "./TablePagination";
 
 const postEngagementData = [
 	{
@@ -43,7 +40,7 @@ const postEngagementData = [
 		conversionData: "10%",
 	},
 	{
-		id: 4,
+		id: 5,
 		platformIcon: fbIcon,
 		name: "Functionality",
 		engageMetrics: "50/25",
@@ -51,7 +48,7 @@ const postEngagementData = [
 		conversionData: "10%",
 	},
 	{
-		id: 4,
+		id: 6,
 		platformIcon: fbIcon,
 		name: "Functionality",
 		engageMetrics: "50/25",
@@ -188,51 +185,7 @@ const PostEngagementTable: FunctionComponent = () => {
 					</tbody>
 				</table>
 			</div>
-			<div className="flex justify-center items-center gap-4 mt-6">
-				<div className="flex items-center gap-4">
-					<button className="btn btn-circle btn-primary btn-sm">
-						<img
-							className="w-3 h-3"
-							src={leftDoubleArrow}
-							alt="left-arrow"
-						/>
-					</button>
-					<button className="btn btn-circle btn-primary btn-sm">
-						<img
-							className="w-3 h-3"
-							src={leftArrow}
-							alt="left-arrow"
-						/>
-					</button>
-					<button className="btn btn-circle btn-primary btn-sm">
-						<img
-							className="w-3 h-3"
-							src={rightArrow}
-							alt="left-arrow"
-						/>
-					</button>
-					<button className="btn btn-circle btn-primary btn-sm">
-						<img
-							className="w-3 h-3"
-							src={rightDoubleArrow}
-							alt="right-arrow"
-						/>
-					</button>
-				</div>
-				<p className="text-slate-400">
-					Page{" "}
-					<span className="text-slate-600 font-semibold">1 of 2</span>
-				</p>
-				<div className="flex gap-2 items-center">
-					<p className="items-center gap-1">• Go to page:</p>
-					<input
-						type="number"
-						className="input input-sm input-bordered bg-white font-light w-16 focus:outline-offset-0"
-						placeholder="1"
-						min={1}
-					/>
-				</div>
-			</div>
+			<TablePagination />
 		</div>
 	);
 };
