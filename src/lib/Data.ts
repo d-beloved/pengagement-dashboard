@@ -59,7 +59,7 @@ export const postEngagementData = [
 	{
 		id: 1,
 		platformIcon: igIcon,
-		name: "Infrastructure",
+		name: "Jesus",
 		engageMetrics: "50/25",
 		acquired: "66",
 		conversionData: "10%",
@@ -67,7 +67,7 @@ export const postEngagementData = [
 	{
 		id: 2,
 		platformIcon: fbIcon,
-		name: "Division",
+		name: "Christ",
 		engageMetrics: "50/25",
 		acquired: "66",
 		conversionData: "10%",

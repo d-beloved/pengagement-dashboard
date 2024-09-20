@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/lens.svg";
 import arrowDown from "../../assets/arrow-down.svg";
@@ -6,16 +6,96 @@ import TablePagination from "./TablePagination";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
 import {
 	changePage,
+	deletePostEngagement,
+	renamePostEngagement,
 	searchPostEngagement,
 	selectPostEngagements,
 } from "./postEngagementSlice";
 import { getCurrentPageIndex } from "../../lib/helpers";
+import { MenuProps, PostEngagementDataProps } from "../../lib/interfaces";
+import Modal from "../common/Modal";
+
+const TableMenu: FunctionComponent<MenuProps> = ({
+	item,
+	showDropdownAbove,
+	handleShowModal,
+}) => {
+	return (
+		<div className={`dropdown ${showDropdownAbove ? "dropdown-top" : ""}`}>
+			<div
+				tabIndex={0}
+				role="button"
+				className="btn m-1 btn-outline btn-xs text-slate-600 hover:invert"
+			>
+				Actions
+			</div>
+			<ul
+				tabIndex={0}
+				className="menu dropdown-content bg-white font-light rounded-box z-[100] p-1 shadow"
+			>
+				<li className="text-xs">
+					<Link
+						to={`/capture-tools/post-engagements/${item.id}/edit`}
+					>
+						Edit
+					</Link>
+				</li>
+				<li
+					className="text-xs"
+					onClick={() => handleShowModal(true, item)}
+				>
+					<a>Rename</a>
+				</li>
+				<li
+					className="text-xs"
+					onClick={() => handleShowModal(false, item)}
+				>
+					<a>Delete</a>
+				</li>
+			</ul>
+		</div>
+	);
+};
 
 const PostEngagementTable: FunctionComponent = () => {
 	const dispatch = useAppDispatch();
 	const postEngagements = useAppSelector(selectPostEngagements);
 	const { postEngagementData, totalPostEngagement, allPostEngagementData } =
 		postEngagements;
+
+	const [showModal, setShowModal] = useState(false);
+	const [rename, setRename] = useState(false);
+	const [selectedItem, setSelectedItem] = useState<PostEngagementDataProps>();
+
+	const handleShowModal = (
+		shouldRename: boolean,
+		data: PostEngagementDataProps,
+	) => {
+		setShowModal(true);
+		setRename(shouldRename);
+		setSelectedItem(data);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+		setRename(false);
+		setSelectedItem(undefined);
+	};
+
+	const handleConfirmModal = (
+		index: number,
+		value: string,
+		isRename?: boolean,
+	) => {
+		if (isRename) {
+			dispatch(renamePostEngagement({ newVal: value, id: index }));
+		} else {
+			dispatch(deletePostEngagement(index));
+		}
+		setShowModal(false);
+		setRename(false);
+		setSelectedItem(undefined);
+	};
 
 	return (
 		<div className="rounded-box mt-5 w-9/12 mx-6">
@@ -86,68 +166,51 @@ const PostEngagementTable: FunctionComponent = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{postEngagementData.map((item) => (
-							<tr
-								key={item.id}
-								className="text-slate-600 border-b-inherit"
-							>
-								<th>
-									<div className="px-1">
-										<input
-											type="checkbox"
-											className="checkbox checkbox-sm outline outline-slate-200 outline-1 checked:invert"
-										/>
-									</div>
-								</th>
-								<td className="max-w-1">
-									<div className="mask mask-squircle h-4 w-4">
-										<img
-											src={item.platformIcon}
-											alt="platform-icon"
-										/>
-									</div>
-								</td>
-								<td>
-									<div className="flex items-center">
-										<div className="font-normal text-sm">
-											{item.name}
+						{postEngagementData.map((item) => {
+							const dropdownAbove = postEngagementData
+								.slice(-3)
+								.includes(item);
+							return (
+								<tr
+									key={item.id}
+									className="text-slate-600 border-b-inherit"
+								>
+									<th>
+										<div className="px-1">
+											<input
+												type="checkbox"
+												className="checkbox checkbox-sm outline outline-slate-200 outline-1 checked:invert"
+											/>
 										</div>
-									</div>
-								</td>
-								<td>{item.engageMetrics}</td>
-								<td>{item.acquired}</td>
-								<td>{item.conversionData}</td>
-								<th>
-									<div className="dropdown">
-										<div
-											tabIndex={0}
-											role="button"
-											className="btn m-1 btn-outline btn-xs text-slate-600"
-										>
-											Actions
+									</th>
+									<td className="max-w-1">
+										<div className="mask mask-squircle h-4 w-4">
+											<img
+												src={item.platformIcon}
+												alt="platform-icon"
+											/>
 										</div>
-										<ul
-											tabIndex={0}
-											className="dropdown-content menu bg-white font-light rounded-box z-[1] w-max h-max p-1 shadow"
-										>
-											<li>
-												<Link
-													to={`/capture-tools/post-engagements/${item.id}/edit`}
-												>
-													Edit
-												</Link>
-											</li>
-											<li>
-												<a>Rename</a>
-											</li>
-											<li>
-												<a>Delete</a>
-											</li>
-										</ul>
-									</div>
-								</th>
-							</tr>
-						))}
+									</td>
+									<td>
+										<div className="flex items-center">
+											<div className="font-normal text-sm">
+												{item.name}
+											</div>
+										</div>
+									</td>
+									<td>{item.engageMetrics}</td>
+									<td>{item.acquired}</td>
+									<td>{item.conversionData}</td>
+									<td>
+										<TableMenu
+											item={item}
+											showDropdownAbove={dropdownAbove}
+											handleShowModal={handleShowModal}
+										/>
+									</td>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</div>
@@ -162,6 +225,15 @@ const PostEngagementTable: FunctionComponent = () => {
 					dispatch(changePage(page));
 				}}
 			/>
+			{showModal && (
+				<Modal
+					showModal={showModal}
+					renameItem={rename}
+					dataId={selectedItem!.id}
+					onClose={handleCloseModal}
+					onConfirm={handleConfirmModal}
+				/>
+			)}
 		</div>
 	);
 };

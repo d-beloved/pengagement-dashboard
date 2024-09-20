@@ -12,3 +12,9 @@ export interface PostEngagementState {
 	allPostEngagementData: PostEngagementDataProps[];
 	postEngagementData: PostEngagementDataProps[];
 }
+
+export interface MenuProps {
+	item: PostEngagementDataProps;
+	showDropdownAbove?: boolean;
+	handleShowModal: (action: boolean, item: PostEngagementDataProps) => void;
+}

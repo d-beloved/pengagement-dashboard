@@ -16,17 +16,17 @@ export const postEngagementSlice = createSlice({
 	name: "postEngagements",
 	initialState,
 	reducers: {
-		deletePostEngagement: (state, action: PayloadAction<string>) => {
+		deletePostEngagement: (state, action: PayloadAction<number>) => {
 			state.postEngagementData = state.postEngagementData.filter(
-				(post) => post.id !== +action.payload,
+				(post) => post.id !== action.payload,
 			);
 		},
 		renamePostEngagement: (
 			state,
-			action: PayloadAction<{ newVal: string; id: string }>,
+			action: PayloadAction<{ newVal: string; id: number }>,
 		) => {
 			state.postEngagementData = state.postEngagementData.map((post) => {
-				if (post.id === +action.payload.id) {
+				if (post.id === action.payload.id) {
 					return {
 						...post,
 						name: action.payload.newVal,

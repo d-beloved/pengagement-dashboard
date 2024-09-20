@@ -76,17 +76,19 @@ const TablePagination: FC<PaginationProps> = ({
 					handleGoToLastPage,
 				)}
 			</div>
-			<p className="text-slate-400">
+			<p className="text-slate-600">
 				Page{" "}
-				<span className="text-slate-600 font-semibold">
+				<span className="font-semibold">
 					{currentPage} of {numberOfPages}
 				</span>
 			</p>
 			<div className="flex gap-2 items-center">
-				<p className="items-center gap-1">• Go to page:</p>
+				<p className="items-center gap-1 text-slate-600">
+					• Go to page:
+				</p>
 				<input
 					type="number"
-					className="input input-sm input-bordered bg-white font-light w-16 focus:outline-offset-0"
+					className="input input-sm input-bordered bg-white font-light w-16 focus:outline-offset-0 text-slate-600"
 					placeholder="1"
 					min={1}
 					max={numberOfPages}
