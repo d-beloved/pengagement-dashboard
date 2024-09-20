@@ -1,65 +1,17 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/lens.svg";
-import igIcon from "../../assets/instagram-1.svg";
-import fbIcon from "../../assets/fb-messenger.svg";
 import arrowDown from "../../assets/arrow-down.svg";
 import TablePagination from "./TablePagination";
-
-const postEngagementData = [
-	{
-		id: 1,
-		platformIcon: igIcon,
-		name: "Infrastructure",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-	{
-		id: 2,
-		platformIcon: fbIcon,
-		name: "Functionality",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-	{
-		id: 3,
-		platformIcon: igIcon,
-		name: "Functionality",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-	{
-		id: 4,
-		platformIcon: fbIcon,
-		name: "Functionality",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-	{
-		id: 5,
-		platformIcon: fbIcon,
-		name: "Functionality",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-	{
-		id: 6,
-		platformIcon: fbIcon,
-		name: "Functionality",
-		engageMetrics: "50/25",
-		acquired: "66",
-		conversionData: "10%",
-	},
-];
+import { useAppDispatch, useAppSelector } from "../../lib/hooks";
+import { selectPostEngagements } from "./postEngagementSlice";
 
 const PostEngagementTable: FunctionComponent = () => {
+	const dispatch = useAppDispatch();
+	const postEngagementsData = useAppSelector(selectPostEngagements);
+
 	return (
-		<div className="rounded-box mt-8 w-9/12 mx-6">
+		<div className="rounded-box mt-5 w-9/12 mx-6">
 			<div className="flex justify-between items-center">
 				<p className="text-xl text-slate-700">Post Engagement</p>
 				<div className="flex gap-4 mr-4 mb-5">
@@ -99,7 +51,7 @@ const PostEngagementTable: FunctionComponent = () => {
 					</div>
 				</div>
 			</div>
-			<div className="overflow-x-auto overflow-y-hidden bg-white">
+			<div className="overflow-x-auto max-h-[34rem] bg-white">
 				<table className="table table-sm">
 					<thead>
 						<tr className="text-slate-400 font-bold border-b-inherit">
@@ -120,7 +72,7 @@ const PostEngagementTable: FunctionComponent = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{postEngagementData.map((item) => (
+						{postEngagementsData.map((item) => (
 							<tr
 								key={item.id}
 								className="text-slate-600 border-b-inherit"

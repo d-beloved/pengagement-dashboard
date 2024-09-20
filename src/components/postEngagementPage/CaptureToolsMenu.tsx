@@ -1,55 +1,35 @@
 import { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
-import link from "../../assets/link.svg";
-import jsonIcon from "../../assets/format-json.svg";
-import connectorIcon from "../../assets/plugin-connect.svg";
-import menuIcon from "../../assets/menu-grid.svg";
-import postIcon from "../../assets/post-sign.svg";
-import messengerIcon from "../../assets/messenger.svg";
-
-const CaptureToolsMenuItems = [
-	{ icon: link, text: "Link Library", alt: "Link" },
-	{ icon: jsonIcon, text: "JSON Generator", alt: "json-generator" },
-	{ icon: connectorIcon, text: "Checkbox Plugin", alt: "connect" },
-	{ icon: menuIcon, text: "Menu Plugin", alt: "messenger" },
-	{
-		icon: postIcon,
-		text: "Post Engagement",
-		alt: "posts",
-		route: "/capture-tools/post-engagements",
-	},
-	{ icon: messengerIcon, text: "Send To Messenger", alt: "send" },
-];
+import { Link, useLocation } from "react-router-dom";
+import { CaptureToolsMenuItems } from "../../lib/Data";
 
 const CaptureToolsMenu: FunctionComponent = () => {
+	const { pathname } = useLocation();
+
 	return (
 		<ul className="menu bg-white shadow-md rounded-box w-[17rem] mt-8 h-fit">
 			<li className="menu-title text-gray-400">Capture Tools</li>
-			{CaptureToolsMenuItems.map((item) => (
-				<li
-					key={item.text}
-					className="flex text-primary-content font-light"
-				>
-					{item.route ? (
-						<Link to={item.route}>
+			{CaptureToolsMenuItems.map((item) => {
+				const isActive = pathname.includes(item.route!);
+				return (
+					<li
+						key={item.text}
+						className="flex text-primary-content font-light hover:bg-slate-100"
+					>
+						<Link
+							className={`py-2 px-4 ${isActive ? "active !text-white" : ""} active:!text-white`}
+							to={item.route ? item.route : ""}
+							onClick={(e) => !isActive && e.preventDefault()}
+						>
 							<img
-								className="w-4 h-4"
-								src={item.icon}
-								alt={item.alt}
-							/>
-						</Link>
-					) : (
-						<a>
-							<img
-								className="w-4 h-4"
+								className={`w-4 h-4 ${isActive ? "invert" : ""} active:invert`}
 								src={item.icon}
 								alt={item.alt}
 							/>
 							{item.text}
-						</a>
-					)}
-				</li>
-			))}
+						</Link>
+					</li>
+				);
+			})}
 		</ul>
 	);
 };
