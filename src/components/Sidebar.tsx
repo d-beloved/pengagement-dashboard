@@ -11,7 +11,7 @@ const Sidebar: FunctionComponent<SidebarProps> = ({ isHamburgerOpen }) => {
 
 	return (
 		<ul
-			className={`${isHamburgerOpen ? "menu rounded-t-none" : "hidden lg:menu"}  menu-vertical h-full lg:h-auto rounded-box bg-white w-[4.5rem] max-w-[4.5rem]`}
+			className={`${isHamburgerOpen ? "rounded-t-none" : "max-lg:hidden"} menu menu-vertical h-full lg:h-auto rounded-box bg-white w-[4.5rem] max-w-[4.5rem]`}
 		>
 			{sidebarItems.map((item, index) => {
 				const isActive = pathname.includes(item.route!);
