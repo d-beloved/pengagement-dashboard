@@ -13,7 +13,6 @@ export default {
 			colors: {
 				theme: "#f2f7ff",
 				themebg: "#0169FF",
-				themeDarkBlur: "#10599b22",
 			},
 		},
 	},
