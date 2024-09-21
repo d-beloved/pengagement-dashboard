@@ -1,17 +1,5 @@
 import { useState, FunctionComponent } from "react";
-
-interface EditPageContentProps {
-	title: string;
-	settings?: JSX.Element;
-}
-
-interface TabsProps {
-	type: string;
-	width: string;
-	contents: EditPageContentProps[];
-	fontSize?: string;
-	boxed?: boolean;
-}
+import { TabsProps } from "../../lib/interfaces";
 
 const Tabs: FunctionComponent<TabsProps> = ({
 	type,
@@ -50,7 +38,9 @@ const Tabs: FunctionComponent<TabsProps> = ({
 					);
 				})}
 			</div>
-			<div className="flex justify-center w-full">{content}</div>
+			<div className="flex justify-center items-start w-full px-4 overflow-auto">
+				{content}
+			</div>
 		</div>
 	);
 };

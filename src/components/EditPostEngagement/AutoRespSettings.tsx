@@ -1,45 +1,18 @@
 import { FunctionComponent } from "react";
 import DropdownSection from "../common/DropdownSection";
-
-const commentType = [
-	{
-		value: "static",
-		label: "Static",
-	},
-	{
-		value: "open_ai",
-		label: "Open AI",
-	},
-];
-
-const integration = [
-	{
-		value: "integration1",
-		label: "Integration 1",
-	},
-	{
-		value: "integration2",
-		label: "Integration 2",
-	},
-];
-
-const assistance = [
-	{
-		value: "assistance1",
-		label: "Assistance 1",
-	},
-	{
-		value: "assistance2",
-		label: "Assistance 2",
-	},
-];
+import { assistance, commentType, integration } from "../../lib/Data";
 
 const AutoRespSettings: FunctionComponent = () => {
 	return (
 		<div className="flex flex-col justify-center mt-3 w-full">
 			<div className="flex justify-between items-center mb-2">
-				<p>Enable To Automatically Like Comments</p>
-				<input type="checkbox" className="toggle" />
+				<p className="text-sm text-slate-500">
+					Enable To Automatically Like Comments
+				</p>
+				<input
+					type="checkbox"
+					className="toggle bg-slate-400 [--tglbg:white] checked:bg-themebg"
+				/>
 			</div>
 			<DropdownSection
 				title="Reply In Comments"
@@ -54,6 +27,7 @@ const AutoRespSettings: FunctionComponent = () => {
 					},
 					{ dropdownLabel: "Select Assistance", options: assistance },
 				]}
+				showInputs
 			/>
 		</div>
 	);

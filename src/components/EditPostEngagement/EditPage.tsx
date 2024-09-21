@@ -8,13 +8,11 @@ import { Link } from "react-router-dom";
 
 const EditPage: FunctionComponent = () => {
 	return (
-		<div className="flex flex-col gap-4 w-11/12 mt-3">
+		<div className="flex flex-col gap-4 w-11/12 mt-3 mx-11">
 			<div className="flex justify-between px-5 items-center">
 				<div className="breadcrumbs text-lg text-slate-600">
 					<ul>
-						<li>
-							<a>Capture Tools</a>
-						</li>
+						<li>Capture Tools</li>
 						<li>
 							<Link to="/capture-tools/post-engagements">
 								Post Engagement
@@ -23,7 +21,7 @@ const EditPage: FunctionComponent = () => {
 						<li>Edit</li>
 					</ul>
 				</div>
-				<div className="btn btn-primary btn-sm text-white bg-themebg px-4">
+				<div className="btn btn-primary btn-sm text-white bg-themebg px-4 hover:bg-themebg/80">
 					Save
 				</div>
 			</div>

@@ -1,11 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import Badges from "../common/Badges";
-
-interface ReactionProps {
-	reactions: string[];
-	icons: string[];
-	allowClick?: boolean;
-}
+import { ReactionProps } from "../../lib/interfaces";
 
 const Reactions: FunctionComponent<ReactionProps> = ({
 	reactions,
@@ -17,10 +12,10 @@ const Reactions: FunctionComponent<ReactionProps> = ({
 	const [selectedIcons, setSelectedIcons] = useState<string[]>([]);
 
 	const handleClick = (reaction: string, icon: string) => {
-		if (allowClick) {
+		if (allowClick && !badgeList.includes(reaction)) {
 			setShowBadge(true);
 			setBadgeList([...badgeList, reaction]);
-			setSelectedIcons([...icon, icon]);
+			setSelectedIcons([...selectedIcons, icon]);
 		}
 	};
 
@@ -42,17 +37,17 @@ const Reactions: FunctionComponent<ReactionProps> = ({
 					iconList={selectedIcons}
 				/>
 			)}
-			<div className="flex justify-center">
+			<div className="hidden group-hover:flex justify-center w-full gap-3">
 				{reactions.map((reaction, index) => {
 					const icon = icons[index];
 					return (
 						<div
 							key={index}
-							className="tooltip"
+							className="tooltip [--tooltip-text-color:white] cursor-pointer"
 							data-tip={reaction}
 						>
 							<img
-								className="w-6 hover:transform-gpu"
+								className="w-11 transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-150 duration-300"
 								src={icon}
 								alt={reaction}
 								onClick={() => handleClick(reaction, icon)}

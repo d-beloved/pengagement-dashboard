@@ -1,22 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Dropdown from "./Dropdown";
-import cross from "../../assets/cross.svg";
-
-interface OptionProps {
-	label: string;
-	value: string;
-}
-
-interface Data {
-	dropdownLabel: string;
-	options: OptionProps[];
-}
-
-interface DropdownSectionProps {
-	title: string;
-	optionsData: Data[];
-	showInputs?: boolean;
-}
+import { DropdownSectionProps } from "../../lib/interfaces";
+import JoinedInput from "./JoinedInput";
 
 const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	title,
@@ -24,6 +9,17 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	showInputs = false,
 }) => {
 	const [commentInputs, setCommentInputs] = useState<number[]>([0]);
+	const [dropdownValues, setDropdownValues] = useState<{
+		[key: string]: string;
+	}>(
+		optionsData.reduce(
+			(acc, { options }, index) => ({
+				...acc,
+				[index]: options[0].value,
+			}),
+			{},
+		),
+	);
 
 	const handleAddComment = () => {
 		setCommentInputs((commentInputs) => [
@@ -33,54 +29,60 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	};
 
 	const handleRemoveComment = (index: number) => {
+		console.log("cvev", index);
 		const newCommentInputs = [...commentInputs];
 		newCommentInputs.splice(index, 1);
 		setCommentInputs(newCommentInputs);
 	};
 
+	const handleDropdownChange = (index: number, value: string) => {
+		setDropdownValues((prevValues) => ({ ...prevValues, [index]: value }));
+	};
+
+	// this is brittle, it needs improvement
+	const renderedOptions =
+		dropdownValues[0] === "flow"
+			? optionsData.slice(0, 2)
+			: dropdownValues[0] === "static"
+				? optionsData.slice(0, 1)
+				: optionsData;
+
+	const shouldShowInputs = showInputs && dropdownValues[0] === "static";
+
 	return (
-		<div>
-			<p>{title}</p>
-			<div className="divider mb-3"></div>
-			{optionsData.map((data, index) => {
+		<div className="w-full mb-8">
+			<p className="text-sm text-slate-600 font-semibold mb-1">{title}</p>
+			<hr className="w-full mb-3" />
+			{renderedOptions.map((data, index) => {
 				const { dropdownLabel, options } = data;
 				return (
 					<Dropdown
 						key={index}
 						label={dropdownLabel}
 						options={options}
-						value={options[0].value}
-						onChange={(value) => console.log(value)}
+						value={dropdownValues[index] || ""}
+						onChange={(value) => handleDropdownChange(index, value)}
 					/>
 				);
 			})}
-			{showInputs && (
-				<>
+			{shouldShowInputs && (
+				<div className="flex flex-col gap-4 mt-4 w-11/12 mx-auto">
 					{commentInputs.map((index) => (
-						<label
+						<JoinedInput
+							placeholder="Type your comment here"
+							action={handleRemoveComment}
+							hasIcon
+							index={index}
 							key={index}
-							className="input input-sm outline outline-1 outline-black active:outline active:outline-black active:outline-1 bg-white flex items-center gap-2"
-						>
-							<input
-								type="text"
-								className="grow text-black font-light"
-								placeholder="Search"
-							/>
-							<img
-								onClick={() => handleRemoveComment(index)}
-								className="w-3 h-3"
-								src={cross}
-								alt="search"
-							/>
-						</label>
+						/>
 					))}
 					<div
 						onClick={handleAddComment}
-						className="btn btn-primary btn-md text-white bg-themebg px-4"
+						className="btn btn-primary btn-md text-white bg-themebg px-4 w-2/5 self-center hover:bg-themebg"
 					>
 						Add Comment
 					</div>
-				</>
+				</div>
 			)}
 		</div>
 	);

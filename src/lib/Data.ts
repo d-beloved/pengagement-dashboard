@@ -18,6 +18,13 @@ import postIcon from "../assets/post-sign.svg";
 import messengerIcon from "../assets/messenger.svg";
 import igIcon from "../assets/instagram-1.svg";
 import fbIcon from "../assets/fb-messenger.svg";
+import angry from "../assets/angry.svg";
+import care from "../assets/care.svg";
+import haha from "../assets/haha.svg";
+import like from "../assets/like.svg";
+import love from "../assets/love.svg";
+import sad from "../assets/sad.svg";
+import wow from "../assets/wow.svg";
 
 export const sidebarItems = [
 	{ icon: dashboardIcon, text: "Dashboard" },
@@ -231,5 +238,77 @@ export const postEngagementData = [
 		engageMetrics: "50/25",
 		acquired: "66",
 		conversionData: "10%",
+	},
+];
+
+export const messageType = [
+	{
+		value: "flow",
+		label: "Flow",
+	},
+	{
+		value: "single_message",
+		label: "Single Message",
+	},
+];
+
+export const flowOptions = [
+	{
+		value: "",
+		label: "Select",
+	},
+	{
+		value: "welcome_message",
+		label: "Welcome Message",
+	},
+	{
+		value: "default_reply",
+		label: "Default Reply",
+	},
+];
+
+export const msg = [
+	{
+		value: "text1",
+		label: "Text Card #1",
+	},
+	{
+		value: "text2",
+		label: "Text Card #2",
+	},
+];
+
+export const Icons = [like, love, haha, wow, sad, angry, care];
+
+export const commentType = [
+	{
+		value: "static",
+		label: "Static",
+	},
+	{
+		value: "open_ai",
+		label: "Open AI",
+	},
+];
+
+export const integration = [
+	{
+		value: "integration1",
+		label: "Integration 1",
+	},
+	{
+		value: "integration2",
+		label: "Integration 2",
+	},
+];
+
+export const assistance = [
+	{
+		value: "assistance1",
+		label: "Assistance 1",
+	},
+	{
+		value: "assistance2",
+		label: "Assistance 2",
 	},
 ];

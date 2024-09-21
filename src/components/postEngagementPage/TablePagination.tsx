@@ -3,12 +3,7 @@ import leftDoubleArrow from "../../assets/double-arrow-left.svg";
 import leftArrow from "../../assets/left-arrow-backup.svg";
 import rightArrow from "../../assets/right-arrow.svg";
 import rightDoubleArrow from "../../assets/double-arrow-right.svg";
-
-interface PaginationProps {
-	numberOfPages: number;
-	currentPage: number;
-	handlePageChange: (page: number) => void;
-}
+import { PaginationProps } from "../../lib/interfaces";
 
 const paginationButtons = (
 	icon: string,

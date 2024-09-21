@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
 import cross from "../../assets/cross.svg";
-
-interface BadgesProps {
-	badgeList: string[];
-	iconList?: string[];
-	handleRemoveBadge: (index: number) => void;
-}
+import { Icons } from "../../lib/Data";
+import { BadgesProps } from "../../lib/interfaces";
 
 const Badges: FunctionComponent<BadgesProps> = ({
 	badgeList,
@@ -13,11 +9,16 @@ const Badges: FunctionComponent<BadgesProps> = ({
 	handleRemoveBadge,
 }) => {
 	return (
-		<div className="flex gap-2 mb-2">
+		<div className="flex gap-2 my-2 flex-wrap">
 			{badgeList.map((reaction, index) => {
-				const icon = iconList && iconList[index];
+				const iconString = iconList && iconList[index];
+				const icon = Icons.find((icon) => icon === iconString);
+
 				return (
-					<div key={index} className="badge badge-info gap-2">
+					<div
+						key={index}
+						className="badge badge-info gap-2 bg-themebg/20 py-3"
+					>
 						{icon && <img className="w-4" src={icon} alt="icon" />}
 						{reaction}
 						<img

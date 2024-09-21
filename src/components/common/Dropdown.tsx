@@ -1,16 +1,5 @@
 import React from "react";
-
-interface DropdownProps {
-	label: string;
-	options: Option[];
-	value: string;
-	onChange: (value: string) => void;
-}
-
-interface Option {
-	label: string;
-	value: string;
-}
+import { DropdownProps } from "../../lib/interfaces";
 
 const Dropdown: React.FC<DropdownProps> = ({
 	label,
@@ -19,24 +8,20 @@ const Dropdown: React.FC<DropdownProps> = ({
 	onChange,
 }) => {
 	return (
-		<div className="flex flex-col flex-wrap items-start w-72">
-			<label className="form-control w-full max-w-xs">
+		<div className="flex flex-col flex-wrap items-start w-full invert">
+			<label className="form-control w-full">
 				<div className="label">
 					<span className="label-text">{label}</span>
 				</div>
 				<select
-					className="select select-bordered"
+					className="select select-bordered bg-black"
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 				>
-					{options.map((option, index) => {
+					{options.map((option) => {
 						const { value, label } = option;
 						return (
-							<option
-								key={value}
-								value={value}
-								disabled={index === 0}
-							>
+							<option key={value} value={value}>
 								{label}
 							</option>
 						);

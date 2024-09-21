@@ -1,81 +1,52 @@
 import { FunctionComponent } from "react";
-import angry from "../../assets/angry.svg";
-import care from "../../assets/care.svg";
-import haha from "../../assets/haha.svg";
-import like from "../../assets/like.svg";
-import love from "../../assets/love.svg";
-import sad from "../../assets/sad.svg";
-import wow from "../../assets/wow.svg";
 import DropdownSection from "../common/DropdownSection";
 import JoinedInput from "../common/JoinedInput";
 import Reactions from "../common/Reactions";
-
-const messageType = [
-	{
-		value: "flow",
-		label: "Flow",
-	},
-	{
-		value: "single_message",
-		label: "Single Message",
-	},
-];
-
-const flowOptions = [
-	{
-		value: "",
-		label: "Select",
-	},
-	{
-		value: "welcome_message",
-		label: "Welcome Message",
-	},
-	{
-		value: "default_reply",
-		label: "Default Reply",
-	},
-];
-
-const msg = [
-	{
-		value: "text1",
-		label: "Text Card #1",
-	},
-	{
-		value: "text2",
-		label: "Text Card #2",
-	},
-];
+import { flowOptions, Icons, messageType, msg } from "../../lib/Data";
 
 const Settings: FunctionComponent = () => {
 	return (
-		<div className="flex flex-col justify-center mt-3 w-full">
+		<div className="flex flex-col mt-3 w-full">
 			<div className="flex justify-between items-center mb-2">
-				<p>Enable To Privately Reply To First-Level Comments Only</p>
-				<input type="checkbox" className="toggle" />
-			</div>
-			<div className="flex justify-between items-center mb-2">
-				<p>Send Message To The Same User Only Once Per Post</p>
-				<input type="checkbox" className="toggle" />
-			</div>
-			<div>
-				<p>Require a Post Reaction</p>
-				<div className="divider mb-3"></div>
-				<Reactions
-					reactions={[
-						"angry",
-						"care",
-						"haha",
-						"like",
-						"love",
-						"sad",
-						"wow",
-					]}
-					icons={[angry, care, haha, like, love, sad, wow]}
-					allowClick
+				<p className="text-sm text-slate-500">
+					Enable To Privately Reply To First-Level Comments Only
+				</p>
+				<input
+					type="checkbox"
+					className="toggle bg-slate-400 [--tglbg:white] checked:bg-themebg"
 				/>
-				<div className="btn btn-primary btn-md text-white bg-themebg px-4 mb-3">
-					Require Reaction
+			</div>
+			<div className="flex justify-between items-center mb-2">
+				<p className="text-sm text-slate-500">
+					Send Message To The Same User Only Once Per Post
+				</p>
+				<input
+					type="checkbox"
+					className="toggle bg-slate-400 [--tglbg:white] checked:bg-themebg"
+				/>
+			</div>
+			<div className="mt-3">
+				<p className="text-sm text-slate-600 font-semibold mb-1">
+					Require a Post Reaction
+				</p>
+				<hr className="w-full mb-3" />
+				<div className="w-full group">
+					<Reactions
+						reactions={[
+							"like",
+							"love",
+							"haha",
+							"wow",
+							"sad",
+							"angry",
+							"care",
+						]}
+						icons={[...Icons]}
+						allowClick
+					/>
+					<div className="btn btn-primary btn-md text-white bg-themebg px-4 mt-3 mb-6 w-full group-hover:bg-themebg">
+						Require Reaction
+					</div>
 				</div>
 				<JoinedInput
 					btnText="Add Keyword"

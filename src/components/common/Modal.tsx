@@ -1,12 +1,6 @@
 import { FC, MouseEvent, useState } from "react";
+import { ModalProps } from "../../lib/interfaces";
 
-interface ModalProps {
-	showModal: boolean;
-	renameItem: boolean;
-	dataId: number;
-	onClose: () => void;
-	onConfirm: (index: number, value: string, isRename?: boolean) => void;
-}
 const Modal: FC<ModalProps> = ({
 	showModal,
 	renameItem,

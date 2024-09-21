@@ -9,7 +9,7 @@ const Root: FunctionComponent = () => {
 	return (
 		<div className="w-dvw h-dvh bg-theme overflow-hidden">
 			<Topbar />
-			<div className="flex gap-8 w-full h-full">
+			<div className="flex gap-2 w-full h-full">
 				<Sidebar />
 				<Outlet />
 			</div>
