@@ -83,7 +83,7 @@ const TablePagination: FC<PaginationProps> = ({
 				</p>
 				<input
 					type="number"
-					className="input input-sm input-bordered bg-white font-light w-16 focus:outline-offset-0 text-slate-600"
+					className="input input-sm input-bordered bg-black font-light w-16 focus:outline-offset-0 text-slate-200 invert"
 					placeholder="1"
 					min={1}
 					max={numberOfPages}
