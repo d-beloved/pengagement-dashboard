@@ -98,11 +98,13 @@ const PostEngagementTable: FunctionComponent = () => {
 	};
 
 	return (
-		<div className="rounded-box mt-5 w-9/12 mx-6">
-			<div className="flex justify-between items-center">
-				<p className="text-xl text-slate-700">Post Engagement</p>
-				<div className="flex gap-4 mr-4 mb-5">
-					<label className="input input-sm outline outline-1 outline-black bg-white flex items-center gap-2">
+		<div className="rounded-box mt-5 lg:w-9/12 w-full mx-auto sm:mx-6 px-6 sm:px-0">
+			<div className="flex justify-between items-center mb-5">
+				<p className="text-xl text-slate-700 text-ellipsis overflow-hidden whitespace-nowrap">
+					Post Engagement
+				</p>
+				<div className="flex gap-4 mr-4">
+					<label className="input input-sm outline outline-1 outline-black bg-white hidden md:flex items-center gap-2">
 						<input
 							type="text"
 							className="grow text-black font-light"
@@ -145,8 +147,8 @@ const PostEngagementTable: FunctionComponent = () => {
 					</div>
 				</div>
 			</div>
-			<div className="overflow-x-auto max-h-[28rem] bg-white">
-				<table className="table table-xs">
+			<div className="overflow-x-auto max-h-[28rem] bg-white sm:rounded-lg sm:shadow-md">
+				<table className="table table-xs min-w-full table-auto">
 					<thead>
 						<tr className="text-slate-400 font-bold border-b-inherit">
 							<th>

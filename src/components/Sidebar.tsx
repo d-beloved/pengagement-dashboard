@@ -2,11 +2,17 @@ import { FunctionComponent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { sidebarItems } from "../lib/Data";
 
-const Sidebar: FunctionComponent = () => {
+interface SidebarProps {
+	isHamburgerOpen?: boolean;
+}
+
+const Sidebar: FunctionComponent<SidebarProps> = ({ isHamburgerOpen }) => {
 	const { pathname } = useLocation();
 
 	return (
-		<ul className="menu menu-vertical rounded-box bg-white w-[4.5rem] max-w-[4.5rem]">
+		<ul
+			className={`${isHamburgerOpen ? "menu h-full rounded-t-none" : "hidden"} lg:menu menu-vertical rounded-box bg-white w-[4.5rem] max-w-[4.5rem]`}
+		>
 			{sidebarItems.map((item, index) => {
 				const isActive = pathname.includes(item.route!);
 				return (

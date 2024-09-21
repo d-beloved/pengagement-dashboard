@@ -71,13 +71,13 @@ const TablePagination: FC<PaginationProps> = ({
 					handleGoToLastPage,
 				)}
 			</div>
-			<p className="text-slate-600">
+			<p className="hidden xs:block text-slate-600">
 				Page{" "}
 				<span className="font-semibold">
 					{currentPage} of {numberOfPages}
 				</span>
 			</p>
-			<div className="flex gap-2 items-center">
+			<div className="hidden md:flex gap-2 items-center">
 				<p className="items-center gap-1 text-slate-600">
 					• Go to page:
 				</p>

@@ -25,7 +25,7 @@ const Modal: FC<ModalProps> = ({
 			open={showModal}
 			className="modal modal-top bg-themebg bg-opacity-25 "
 		>
-			<div className="modal-box bg-white mt-20 rounded-t-box mx-auto w-2/5 text-slate-700 shadow-md">
+			<div className="modal-box bg-white mt-20 rounded-t-box mx-auto w-11/12 sm:w-4/5 md:w-2/5 text-slate-700 shadow-md">
 				<form method="dialog" className="flex flex-col gap-3">
 					{renameItem ? (
 						<>

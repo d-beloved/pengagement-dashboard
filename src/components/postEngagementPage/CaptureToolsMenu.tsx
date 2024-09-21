@@ -6,7 +6,7 @@ const CaptureToolsMenu: FunctionComponent = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<ul className="menu bg-white shadow-md rounded-box w-[17rem] mt-8 h-fit">
+		<ul className="hidden lg:menu bg-white shadow-md rounded-box w-[17rem] mt-8 h-fit">
 			<li className="menu-title text-gray-400">Capture Tools</li>
 			{CaptureToolsMenuItems.map((item) => {
 				const isActive = pathname.includes(item.route!);
