@@ -49,25 +49,25 @@ const TablePagination: FC<PaginationProps> = ({
 				{paginationButtons(
 					leftDoubleArrow,
 					"left-double-arrow",
-					currentPage === 1,
+					currentPage === 1 || numberOfPages === 0,
 					handleGoToFirstPage,
 				)}
 				{paginationButtons(
 					leftArrow,
 					"left-arrow",
-					currentPage === 1,
+					currentPage === 1 || numberOfPages === 0,
 					handleGoToPreviousPage,
 				)}
 				{paginationButtons(
 					rightArrow,
 					"right-arrow",
-					currentPage === numberOfPages,
+					currentPage === numberOfPages || numberOfPages === 0,
 					handleGoToNextPage,
 				)}
 				{paginationButtons(
 					rightDoubleArrow,
 					"right-double-arrow",
-					currentPage === numberOfPages,
+					currentPage === numberOfPages || numberOfPages === 0,
 					handleGoToLastPage,
 				)}
 			</div>

@@ -1,0 +1,15 @@
+{
+	"redirects": [
+		{
+			"source": "/",
+			"destination": "/capture-tools/post-engagements",
+			"permanent": false
+		}
+	],
+	"rewrites": [
+		{
+			"source": "/(.*)",
+			"destination": "/index.html"
+		}
+	]
+}
