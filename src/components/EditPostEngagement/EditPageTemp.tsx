@@ -25,10 +25,10 @@ const EditPage: FunctionComponent = () => {
 					Save
 				</div>
 			</div>
-			<div className="flex flex-col md:flex-row overflow-auto w-full bg-white h-[82%] mb-4 shadow-md rounded-lg">
+			<div className="md:flex md:flex-row max-md:overflow-y-auto w-full bg-white h-[82%] mb-4 shadow-md rounded-lg">
 				<Tabs
 					type="tabs-bordered"
-					width="w-2/5"
+					width="md:w-2/5"
 					contents={[
 						{ title: "Settings", settings: <Settings /> },
 						{
@@ -41,7 +41,7 @@ const EditPage: FunctionComponent = () => {
 				<hr className="md:hidden w-full border-slate-300 border-2 mb-3" />
 				<Tabs
 					type="tabs-boxed"
-					width="w-3/5"
+					width="md:w-3/5"
 					contents={[
 						{ title: "Select A Post", settings: <SelectPost /> },
 						{ title: "Post ID / URL", settings: <GrabPost /> },

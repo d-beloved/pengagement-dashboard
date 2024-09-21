@@ -17,7 +17,7 @@ const Tabs: FunctionComponent<TabsProps> = ({
 	};
 
 	return (
-		<div className={`w-full md:${width} flex flex-col mb-3`}>
+		<div className={`w-full ${width} flex flex-col`}>
 			<div
 				role="tablist"
 				className={`tabs ${type} tabs-lg bg-white w-full`}
