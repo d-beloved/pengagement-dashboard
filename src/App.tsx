@@ -2,8 +2,8 @@ import { FunctionComponent } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
-import EditPage from "./components/editPostEngagement/EditPage";
 import PostEngagementPage from "./components/postEngagementPage/PostEngagementPage";
+import EditPage from "./components/editPostEngagement/EditPage";
 
 const Root: FunctionComponent = () => {
 	return (
