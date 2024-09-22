@@ -8,7 +8,7 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	optionsData,
 	showInputs = false,
 }) => {
-	const [commentInputs, setCommentInputs] = useState<number[]>([0]);
+	const [commentInputs, setCommentInputs] = useState<number[]>([]);
 	const [dropdownValues, setDropdownValues] = useState<{
 		[key: string]: string;
 	}>(
@@ -29,7 +29,6 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	};
 
 	const handleRemoveComment = (index: number) => {
-		console.log("cvev", index);
 		const newCommentInputs = [...commentInputs];
 		newCommentInputs.splice(index, 1);
 		setCommentInputs(newCommentInputs);
@@ -66,7 +65,7 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 				);
 			})}
 			{shouldShowInputs && (
-				<div className="flex flex-col gap-4 mt-4 w-11/12 mx-auto">
+				<div className="flex flex-col gap-4 mt-4 w-full mx-auto">
 					{commentInputs.map((index) => (
 						<JoinedInput
 							placeholder="Type your comment here"
@@ -76,12 +75,14 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 							key={index}
 						/>
 					))}
-					<div
-						onClick={handleAddComment}
-						className="btn btn-primary btn-md text-white bg-themebg px-4 w-2/5 self-center hover:bg-themebg"
-					>
-						Add Comment
-					</div>
+					{commentInputs.length < 10 && (
+						<div
+							onClick={handleAddComment}
+							className="btn btn-primary btn-md text-white bg-themebg px-4 w-2/5 self-center hover:bg-themebg"
+						>
+							Add Comment
+						</div>
+					)}
 				</div>
 			)}
 		</div>

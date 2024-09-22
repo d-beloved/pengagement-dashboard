@@ -36,11 +36,18 @@ export const postEngagementSlice = createSlice({
 			});
 		},
 		searchPostEngagement: (state, action: PayloadAction<string>) => {
-			state.postEngagementData = postEngagementData.filter((post) => {
+			if (action.payload === "") {
+				return { ...initialState };
+			}
+			state.allPostEngagementData = postEngagementData.filter((post) => {
 				return post.name
 					.toLowerCase()
 					.includes(action.payload.toLowerCase());
 			});
+			state.postEngagementData = [
+				...state.allPostEngagementData.slice(0, 10),
+			];
+			state.totalPostEngagement = state.allPostEngagementData.length;
 		},
 		changePage: (state, action: PayloadAction<number>) => {
 			state.postEngagementData = state.allPostEngagementData.slice(

@@ -71,30 +71,34 @@ const TablePagination: FC<PaginationProps> = ({
 					handleGoToLastPage,
 				)}
 			</div>
-			<p className="hidden xs:block text-slate-600">
-				Page{" "}
-				<span className="font-semibold">
-					{currentPage} of {numberOfPages}
-				</span>
-			</p>
-			<div className="hidden md:flex gap-2 items-center">
-				<p className="items-center gap-1 text-slate-600">
-					• Go to page:
-				</p>
-				<input
-					type="number"
-					className="input input-sm input-bordered bg-black font-light w-16 focus:outline-offset-0 text-slate-200 invert"
-					placeholder="1"
-					min={1}
-					max={numberOfPages}
-					onChange={(e) => {
-						const page = +e.target.value;
-						if (page >= 1 && page <= numberOfPages) {
-							handlePageChange(page);
-						}
-					}}
-				/>
-			</div>
+			{numberOfPages > 0 && (
+				<>
+					<p className="hidden xs:block text-slate-600">
+						Page{" "}
+						<span className="font-semibold">
+							{currentPage} of {numberOfPages}
+						</span>
+					</p>
+					<div className="hidden md:flex gap-2 items-center">
+						<p className="items-center gap-1 text-slate-600">
+							• Go to page:
+						</p>
+						<input
+							type="number"
+							className="input input-sm input-bordered bg-black font-light w-16 focus:outline-offset-0 text-slate-200 invert"
+							placeholder="1"
+							min={1}
+							max={numberOfPages}
+							onChange={(e) => {
+								const page = +e.target.value;
+								if (page >= 1 && page <= numberOfPages) {
+									handlePageChange(page);
+								}
+							}}
+						/>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
