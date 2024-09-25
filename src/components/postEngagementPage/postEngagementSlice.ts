@@ -55,6 +55,29 @@ export const postEngagementSlice = createSlice({
 				action.payload * 10,
 			);
 		},
+		sortPostEngagement: (state, action: PayloadAction<string | null>) => {
+			if (action.payload === "asc") {
+				state.allPostEngagementData.sort((a, b) => {
+					if (a.name < b.name) {
+						return -1;
+					}
+					return 0;
+				});
+			} else if (action.payload === "desc") {
+				state.allPostEngagementData.sort((a, b) => {
+					if (a.name > b.name) {
+						return -1;
+					}
+					return 0;
+				});
+			} else {
+				state.allPostEngagementData = [...state.allPostEngagementData];
+			}
+			state.postEngagementData = [
+				...state.allPostEngagementData.slice(0, 10),
+			];
+			state.totalPostEngagement = state.allPostEngagementData.length;
+		},
 	},
 });
 
@@ -63,6 +86,7 @@ export const {
 	renamePostEngagement,
 	searchPostEngagement,
 	changePage,
+	sortPostEngagement,
 } = postEngagementSlice.actions;
 
 export default postEngagementSlice.reducer;

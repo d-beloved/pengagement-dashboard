@@ -56,7 +56,7 @@ const JoinedInput: FunctionComponent<JoinedInputProps> = ({
 						/>
 					</label>
 					<button
-						onClick={() => action!(index!)}
+						onClick={action!}
 						className="btn btn-primary btn-lg text-white bg-slate-200 hover:bg-slate-200 px-4 rounded-s-none border-none"
 					>
 						<img

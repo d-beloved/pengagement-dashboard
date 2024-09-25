@@ -54,7 +54,7 @@ export interface JoinedInputProps {
 	enableBadge?: boolean;
 	hasIcon?: boolean;
 	index?: number;
-	action?: (value: number) => void;
+	action?: () => void;
 }
 
 export interface BadgesProps {

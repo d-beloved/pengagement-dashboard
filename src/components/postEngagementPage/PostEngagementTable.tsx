@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/lens.svg";
 import arrowDown from "../../assets/arrow-down.svg";
+import arrowUp from "../../assets/arrow-up.svg";
 import TablePagination from "./TablePagination";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
 import {
@@ -10,6 +11,7 @@ import {
 	renamePostEngagement,
 	searchPostEngagement,
 	selectPostEngagements,
+	sortPostEngagement,
 } from "./postEngagementSlice";
 import { getCurrentPageIndex } from "../../lib/helpers";
 import { MenuProps, PostEngagementDataProps } from "../../lib/interfaces";
@@ -66,6 +68,7 @@ const PostEngagementTable: FunctionComponent = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [rename, setRename] = useState(false);
 	const [selectedItem, setSelectedItem] = useState<PostEngagementDataProps>();
+	const [sortDirection, setSortDirection] = useState<string | null>(null);
 
 	const handleShowModal = (
 		shouldRename: boolean,
@@ -97,6 +100,21 @@ const PostEngagementTable: FunctionComponent = () => {
 		setSelectedItem(undefined);
 	};
 
+	const handleSortTable = () => {
+		if (postEngagementData.length > 0) {
+			let nextDirection;
+			if (sortDirection === "asc") {
+				nextDirection = "desc";
+			} else if (sortDirection === "desc") {
+				nextDirection = null;
+			} else {
+				nextDirection = "asc";
+			}
+			setSortDirection(nextDirection);
+			dispatch(sortPostEngagement(nextDirection));
+		}
+	};
+
 	return (
 		<div className="rounded-box mt-5 lg:w-9/12 w-full mx-auto sm:mx-6 px-6 sm:px-0">
 			<div className="flex justify-between items-center mb-5">
@@ -109,13 +127,14 @@ const PostEngagementTable: FunctionComponent = () => {
 							type="text"
 							className="grow text-black font-light"
 							placeholder="Search"
-							onChange={(e) =>
+							onChange={(e) => {
 								setTimeout(() => {
 									dispatch(
 										searchPostEngagement(e.target.value),
 									);
-								}, 1000)
-							}
+								}, 1000);
+								setSortDirection(null);
+							}}
 						/>
 						<img
 							className="w-3 h-3"
@@ -160,7 +179,27 @@ const PostEngagementTable: FunctionComponent = () => {
 								</div>
 							</th>
 							<th></th>
-							<th>Name</th>
+							<th
+								onClick={handleSortTable}
+								className={`${sortDirection ? "flex gap-px" : ""} cursor-pointer`}
+							>
+								Name
+								{sortDirection && (
+									<img
+										className="w-5 h-5 contrast-0"
+										src={
+											sortDirection === "asc"
+												? arrowUp
+												: arrowDown
+										}
+										alt={
+											sortDirection === "asc"
+												? "arrow-up"
+												: "arrow-down"
+										}
+									/>
+								)}
+							</th>
 							<th>Engaged / Unique</th>
 							<th>Acquired</th>
 							<th>Conversion</th>

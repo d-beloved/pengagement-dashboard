@@ -29,8 +29,7 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 	};
 
 	const handleRemoveComment = (index: number) => {
-		const newCommentInputs = [...commentInputs];
-		newCommentInputs.splice(index, 1);
+		const newCommentInputs = commentInputs.filter((val) => val !== index);
 		setCommentInputs(newCommentInputs);
 	};
 
@@ -69,7 +68,7 @@ const DropdownSection: FunctionComponent<DropdownSectionProps> = ({
 					{commentInputs.map((index) => (
 						<JoinedInput
 							placeholder="Type your comment here"
-							action={handleRemoveComment}
+							action={() => handleRemoveComment(index)}
 							hasIcon
 							index={index}
 							key={index}
